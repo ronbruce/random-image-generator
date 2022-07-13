@@ -1,10 +1,21 @@
 import './style.css';
 
-fetch('https://picsum.photos/200/300')
-  .then(response => response.json())
-  .then(data => console.log(data));
+fetch('https://picsum.photos/v2/list?page=2&limit=100')
+  .then((res) => res.json())
+  .then((listOfPhotos) => {
+    const i = Math.floor(Math.random() * 100);
 
-document.querySelector('#app').innerHTML = `
-  <h1>Random Image Generator</h1>
-  <a href="https://picsum.photos/200/300" target="_blank">Click Here</a>
-`
+    console.log(i, listOfPhotos[i].id, listOfPhotos[i].download_url);
+
+    document.querySelector('#app').innerHTML += `
+    <h1>${listOfPhotos[i].author}</h1>
+    
+   
+    `
+
+
+  });
+
+//  src="download_url"
+
+
